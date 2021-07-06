@@ -1,2 +1,32 @@
 * fast-refs
-Package to quickly add org-mode formatted refrences into a buffer 
+
+  A package to quickly add org-mode formatted refrences into a buffer. 
+
+  
+[[./img/Screenshot1.png]]
+
+  
+ Note taking during talks is hard. Presenters move fast and often do not allow for sufficient time to note down a useful reference. fast-ref allows is help quickly add references into your notes file by prompting for and auto-formatting the important information.  
+
+* Installation
+
+  Download and add into your local path then add the below into you .emacs
+
+  #+begin_src elisp
+(require 'fast-ref)
+
+  #+end_src
+
+
+* Usage
+
+Run fast-ref with ~M-x~. Enter text when prompted. Reference will be added to kill-ring. Place into buffer with ~p~.
+
+
+
+
+
+
+
+
+     

@@ -1,25 +1,56 @@
-# adapted from https://github.com/purcell/nix-emacs-ci
-language: nix
-
+# from https://github.com/flycheck/emacs-travis/blob/master/.travis.yml
+language: ruby
+# Emacs fails to build in container-based builds on Travis
+# See https://github.com/travis-ci/travis-ci/issues/9061
+# and https://github.com/moby/moby/issues/22801
+sudo: required
+dist: trusty
+rvm:
+  - 2.3.0
+# Allow Emacs snapshot builds to fail and don't wait for it
 os:
   - linux
-
+  - osx
 matrix:
   fast_finish: true
   allow_failures:
     - env: EMACS_VERSION=snapshot
-
+    - env: EMACS_VERSION=24.3
+      os: osx
+    - env: EMACS_VERSION=24.4
+      os: osx
+    - env: EMACS_VERSION=24.5
+      os: osx
+git:
+  depth: 1
 env:
-  - EMACS_CI=emacs-26-3
-  - EMACS_CI=emacs-27-1
-  - EMACS_CI=emacs-snapshot
-
-install:
-  - curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
-  - export PATH="/home/travis/.cask/bin:$PATH"
-  # The default "emacs" executable on the $PATH will now be the version named by $EMACS_CI
-  - bash <(curl https://raw.githubusercontent.com/purcell/nix-emacs-ci/master/travis-install)
-  - cask install
-  - which cask
+  matrix:
+    - EMACS_VERSION=24.3
+    - EMACS_VERSION=24.4
+    - EMACS_VERSION=24.5
+    - EMACS_VERSION=25.1-rc2
+    - EMACS_VERSION=25.1
+    - EMACS_VERSION=25.2
+    - EMACS_VERSION=25.3
+    - EMACS_VERSION=26.0.91 PRETEST=yes
+    - EMACS_VERSION=26.1
+    - EMACS_VERSION=snapshot
+    - TEXINFO_VERSION=6.1
+  global:
+    # Maximum number of executing procesors
+    - MAKE_JOBS=$(getconf _NPROCESSORS_ONLN)
+    # To cache vendor/bundle
+    - BUNDLE_PATH=vendor/bundle
+    # Setting up the parallel Install
+    - BUNDLE_JOBS=$(getconf _NPROCESSORS_ONLN)
+before_install:
+  # Configure $PATH: Executables are installed to $HOME/bin
+  - export PATH="$HOME/bin:$PATH"
 script:
-  - make test
+  - if [[ -n $EMACS_VERSION ]]; then make -s -f emacs-travis.mk install_emacs; fi
+  - if [[ -n $TEXINFO_VERSION ]]; then make -s -f emacs-travis.mk install_texinfo; fi
+  - make -f emacs-travis.mk test
+addons:
+  apt:
+    packages:
+      - libperl-dev

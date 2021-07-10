@@ -1,12 +1,12 @@
 * fast-refs
 
-  A package to quickly add org-mode formatted refrences into a buffer. 
+  A package to quickly add org-mode formatted refrences into your kill-ring. 
 
   
 [[./img/Screenshot1.png]]
 
   
- Note taking during talks is hard. Presenters move fast and often do not allow for sufficient time to note down a useful reference. fast-ref allows is help quickly add references into your notes file by prompting for and auto-formatting the important information.  
+ Note taking during talks is hard. Presenters move fast and often do not allow for sufficient time to note down a useful reference. fast-ref allows you to quickly add references into your notes file by prompting for, and auto-formatting, the important information.  
 
 * Installation
 

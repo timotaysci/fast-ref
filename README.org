@@ -1,6 +1,6 @@
 * fast-refs
 
-  A package to quickly add org-mode formatted refrences into your kill-ring. 
+  A package to quickly add org-mode formatted refrences into your buffer. 
 
   
 [[./img/Screenshot1.png]]
@@ -19,7 +19,7 @@
 
 * Usage
 
-Run fast-ref with ~M-x~. Enter text when prompted. Reference will be added to kill-ring. Place into buffer with ~p~.
+Run fast-ref with ~M-x~. Enter text when prompted. Reference will be added to your buffer. Place into buffer with ~p~.
 
 
 * Todo

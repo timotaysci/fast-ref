@@ -48,11 +48,11 @@
 
 
 (defun fast-ref()
-  "Start fast-ref - requests various inputs - copies to clip board" ;;fixme - paste into buffer
+  "Start fast-ref - requests various inputs - copies to clip board"
   (interactive)
   (fast-ref-first-author)
   (fast-ref-journal)
   (fast-ref-year)
   (fast-ref-volume)
   (fast-ref-pages)
-  (kill-new (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg ".")))
+  (insert (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg ".")))

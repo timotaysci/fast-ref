@@ -21,6 +21,8 @@
 
 Run fast-ref with ~M-x~. Enter text when prompted. Reference will be added to your buffer. Place into buffer with ~p~.
 
+To auto insert citation at point set ~fast-ref-auto-insert~ to t (on by default). Switch to ~nil~ will hold the reference in the kill ring.  
+
 
 * Todo
 

@@ -26,6 +26,8 @@
 ;; SOFTWARE.
 
 
+(defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
+
 (defun fast-ref-first-author()
   "Gets first author for fast-ref"
   (setq fast-ref-first (read-string "First Author? ")))
@@ -55,4 +57,8 @@
   (fast-ref-year)
   (fast-ref-volume)
   (fast-ref-pages)
-  (insert (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg ".")))
+  (if fast-ref-auto-insert
+      (insert (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
+    (kill-new (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))))
+
+

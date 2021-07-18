@@ -26,9 +26,9 @@ To auto insert citation at point set ~fast-ref-auto-insert~ to t (on by default)
 
 * Todo
 
-1. Allow for different formatting options.
-2. Allow for different ref. styles to be chosen.
-+3. Add option to auto-insert.+
+Allow for different formatting options.
+Allow for different ref. styles to be chosen.
++Add option to auto-insert.+
 
 
 

@@ -25,9 +25,9 @@
 
 * Usage
 
-Run fast-ref with ~M-x~. Enter text when prompted. Reference will be added to your buffer. Place into buffer with ~p~.
+Run fast-ref with ~M-x~. Enter text when prompted. By default the reference will be added to your buffer at the point.
 
-To auto insert citation at point set ~fast-ref-auto-insert~ to t (on by default). Switch to ~nil~ will hold the reference in the kill ring.  
+To auto insert citation at point set ~fast-ref-auto-insert~ to t (on by default). Switching to ~nil~ will hold the reference in the kill ring -  place into buffer with ~p~.
 
 
 * Todo

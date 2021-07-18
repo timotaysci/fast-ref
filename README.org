@@ -14,7 +14,6 @@
 
   #+begin_src elisp
 (add-to-list 'load-path "path/to/install")
-(load "fast-ref")
 
 ;;set to t to auto put at point
 (setq fast-ref-auto-insert nil)

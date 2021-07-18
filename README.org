@@ -1,4 +1,4 @@
-* fast-refs
+* fast-ref
 
   A package to quickly add org-mode formatted refrences into your buffer. 
 

@@ -13,6 +13,13 @@
   Download and add into your local path then add the below into you .emacs
 
   #+begin_src elisp
+(add-to-list 'load-path "path/to/install")
+(load "fast-ref")
+
+;;set to t to auto put at point
+(setq fast-ref-auto-insert nil)
+
+
 (require 'fast-ref)
   #+end_src
 

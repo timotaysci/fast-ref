@@ -25,10 +25,9 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "rsc")
+(defvar fast-ref-cite-style "rsc" "Set the desired ref style for fast-ref")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
-
 
 (defun fast-ref-style-final()
   (cond
@@ -37,8 +36,6 @@
    ((string= fast-ref-cite-style "plain") (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
    )
   )
-
-
 
 (defun fast-ref-first-author()
   "Gets first author for fast-ref"
@@ -60,7 +57,6 @@
   "Gets page(s) for fast-ref"
   (setq fast-ref-pg (read-string "Page(s): ")))
 
-
 (defun fast-ref()
   "Start fast-ref - requests various inputs - copies to clip board"
   (interactive)
@@ -73,7 +69,6 @@
   (if fast-ref-auto-insert
       (insert (fast-ref-style-final))
     (kill-new (fast-ref-style-final))))
-
 
 (provide 'fast-ref)
 

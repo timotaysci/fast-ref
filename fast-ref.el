@@ -25,7 +25,7 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "rsc" "Set the desired ref style for fast-ref")
+(defvar fast-ref-cite-style "acs" "Set the desired ref style for fast-ref")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
 
@@ -71,4 +71,3 @@
     (kill-new (fast-ref-style-final))))
 
 (provide 'fast-ref)
-

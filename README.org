@@ -17,9 +17,11 @@
   #+begin_src elisp
 (add-to-list 'load-path "path/to/install")
 
-;;set to t to insert into buffer at point
+;;set to t (or don't include this line) to insert into buffer at point 
 (setq fast-ref-auto-insert nil)
 
+;; set the style wanted - current options are "rsc", "acs" and "plain".
+(setq fast-ref-cite-style "rsc")
 
 (require 'fast-ref)
   #+end_src

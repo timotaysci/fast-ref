@@ -25,28 +25,40 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
+(defvar fast-ref-cite-style "rsc")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
 
+
+(defun fast-ref-style-final()
+  (cond
+   ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
+   ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
+   ((string= fast-ref-cite-style "plain") (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
+   )
+  )
+
+
+
 (defun fast-ref-first-author()
   "Gets first author for fast-ref"
-  (setq fast-ref-first (read-string "First Author? ")))
+  (setq fast-ref-first (read-string "First Author: ")))
 
 (defun fast-ref-journal()
   "Gets journal for fast-ref"
-  (setq fast-ref-jour (read-string "Journal? ")))
+  (setq fast-ref-jour (read-string "Journal: ")))
 
 (defun fast-ref-year()
   "Gets year for fast-ref"
-  (setq fast-ref-yr (read-string "year? ")))
+  (setq fast-ref-yr (read-string "Year: ")))
 
 (defun fast-ref-volume()
   "Gets volume for fast-ref"
-  (setq fast-ref-vol (read-string "Volume? ")))
+  (setq fast-ref-vol (read-string "Volume: ")))
 
 (defun fast-ref-pages()
   "Gets page(s) for fast-ref"
-  (setq fast-ref-pg (read-string "page(s)? ")))
+  (setq fast-ref-pg (read-string "Page(s): ")))
 
 
 (defun fast-ref()
@@ -57,9 +69,11 @@
   (fast-ref-year)
   (fast-ref-volume)
   (fast-ref-pages)
+  ;;(insert (fast-ref-style-final)))
   (if fast-ref-auto-insert
-      (insert (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
-    (kill-new (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))))
+      (insert (fast-ref-style-final))
+    (kill-new (fast-ref-style-final))))
 
 
 (provide 'fast-ref)
+

@@ -25,17 +25,27 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "acs" "Set the desired ref style for fast-ref")
+(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
+
+(defvar fast-ref-per-ref-insert nil "Toggled per citation insert option")
+
+
+;; For debugging
+;;(setq fast-ref-per-ref-insert nil)
+;;(setq fast-ref-auto-insert nil)
 
 (defun fast-ref-style-final()
   (cond
    ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "plain") (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
+   ((string= fast-ref-cite-style "user") (fast-ref-user-define))
+
    )
   )
+
 
 (defun fast-ref-first-author()
   "Gets first author for fast-ref"
@@ -57,17 +67,31 @@
   "Gets page(s) for fast-ref"
   (setq fast-ref-pg (read-string "Page(s): ")))
 
+(defun fast-ref-insert()
+  "Gets user input regarding per citation insertion"
+  (setq fast-ref-per-cite (yes-or-no-p "Insert? "))
+  )
+
 (defun fast-ref()
   "Start fast-ref - requests various inputs - copies to clip board"
   (interactive)
-  (fast-ref-first-author)
-  (fast-ref-journal)
-  (fast-ref-year)
-  (fast-ref-volume)
-  (fast-ref-pages)
-  ;;(insert (fast-ref-style-final)))
-  (if fast-ref-auto-insert
-      (insert (fast-ref-style-final))
-    (kill-new (fast-ref-style-final))))
+
+
+
+  (if fast-ref-per-ref-insert
+      (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages) (fast-ref-insert))
+    (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages))
+    )
+
+  (if fast-ref-per-ref-insert
+        (if fast-ref-per-cite
+            (insert (fast-ref-style-final))
+          (progn (kill-new (fast-ref-style-final)) (message nil)))
+    (if fast-ref-auto-insert
+        (insert (fast-ref-style-final))
+      (kill-new (fast-ref-style-final)))))
+
+
 
 (provide 'fast-ref)
+

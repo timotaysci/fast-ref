@@ -31,16 +31,12 @@
 
 (defvar fast-ref-per-ref-insert nil "Toggled per citation insert option")
 
-(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
-
-;; For debugging
-;;(setq fast-ref-per-ref-insert nil)
-;;(setq fast-ref-auto-insert nil)
-;;
+(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".") "Default user style")
 
 (setq fast-ref-cite-style "user")
 
 (defun fast-ref-style-final()
+  "Function to format reference for fast-ref"
   (cond
    ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
@@ -74,8 +70,6 @@
   "Gets user input regarding per citation insertion"
   (setq fast-ref-per-cite (yes-or-no-p "Insert? "))
   )
-
-
 
 (defun fast-ref()
   "Start fast-ref - requests various inputs - copies to clip board"

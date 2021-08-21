@@ -25,7 +25,7 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "user" "Set the desired ref style for fast-ref")
+(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
 

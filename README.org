@@ -33,9 +33,12 @@ Run fast-ref with ~M-x~. Enter text when prompted, press ~RET~ to continue throu
 
 To auto insert citation at point set ~fast-ref-auto-insert~ to t (on by default). Switching to ~nil~ will hold the reference in the kill ring - place into buffer with ~p~.
 
-The default is to format the reference in RSC style with org markdown elements. This can be changed by altering the ~fast-ref-cite-style~  variable. Currently ~asc~ and ~plain~ are available. User specified styles are planned. 
+The default is to format the reference in plain style with org markdown elements. This can be changed by altering the ~fast-ref-cite-style~  variable. Currently ~asc~ and ~plain~ are available. User specified styles are planned. 
+
+To turn on per citation insert option, set ~fast-ref-per-ref-insert~ to t. This will prompt the user each time to determine if the reference should be inserted or kept in kill ring.
 
 Please note - titles are not included as a deliberate design decision as that would slow down the taking down of references.
+
 
 
 * Todo

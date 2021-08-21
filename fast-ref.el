@@ -1,4 +1,6 @@
-;; Author:  Timothy Johnson 
+;;; fast-ref.el --- Quickly add references to your buffers. -*- lexical-binding: t; -*-
+
+;; Author:  Timothy Johnson
 ;; URL: https://github.com/timotaysci/fast-refs/
 ;; Website: www.timothyjohnson.me.uk
 ;; Created: 2021
@@ -25,59 +27,62 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref")
 
-(defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
+;;; Commentary:
+;;Note taking during talks is hard. Presenters move fast and often do not allow for sufficient time to note down a useful reference.
+;;fast-ref allows you to quickly add references into your notes file by prompting for, and auto-formatting, the important information.
+;;This package currently defaults to a plaim style using org mode markdown elements - this can, of course, be customised.
 
-(defvar fast-ref-per-ref-insert nil "Toggled per citation insert option")
+;;; Code:
 
-(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".") "Default user style")
+(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref.")
+
+(defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring.")
+
+(defvar fast-ref-per-ref-insert nil "Toggled per citation insert option.")
+
+(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".") "Default user style.")
 
 (setq fast-ref-cite-style "user")
 
 (defun fast-ref-style-final()
-  "Function to format reference for fast-ref"
+  "Function to format reference for fast-ref."
   (cond
    ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "plain") (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
-   ((string= fast-ref-cite-style "user") (fast-ref-user-define))
-
-   )
-  )
+   ((string= fast-ref-cite-style "user") (fast-ref-user-define))))
 
 (defun fast-ref-first-author()
-  "Gets first author for fast-ref"
+  "Gets first author for fast-ref."
   (setq fast-ref-first (read-string "First Author: ")))
 
 (defun fast-ref-journal()
-  "Gets journal for fast-ref"
+  "Gets journal for fast-ref."
   (setq fast-ref-jour (read-string "Journal: ")))
 
 (defun fast-ref-year()
-  "Gets year for fast-ref"
+  "Gets year for fast-ref."
   (setq fast-ref-yr (read-string "Year: ")))
 
 (defun fast-ref-volume()
-  "Gets volume for fast-ref"
+  "Gets volume for fast-ref."
   (setq fast-ref-vol (read-string "Volume: ")))
 
 (defun fast-ref-pages()
-  "Gets page(s) for fast-ref"
+  "Gets page(s) for fast-ref."
   (setq fast-ref-pg (read-string "Page(s): ")))
 
 (defun fast-ref-insert()
-  "Gets user input regarding per citation insertion"
-  (setq fast-ref-per-cite (yes-or-no-p "Insert? "))
-  )
+  "Gets user input regarding per citation insertion."
+  (setq fast-ref-per-cite (yes-or-no-p "Insert? ")))
 
 (defun fast-ref()
-  "Start fast-ref - requests various inputs - copies to clip board"
+  "Start fast-ref - requests various inputs - copies to clip board."
   (interactive)
   (if fast-ref-per-ref-insert
       (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages) (fast-ref-insert))
-    (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages))
-    )
+    (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages)))
   (if fast-ref-per-ref-insert
         (if fast-ref-per-cite
             (insert (fast-ref-style-final))
@@ -86,7 +91,6 @@
         (insert (fast-ref-style-final))
       (kill-new (fast-ref-style-final)))))
 
-
-
 (provide 'fast-ref)
 
+;;; fast-ref.el ends here

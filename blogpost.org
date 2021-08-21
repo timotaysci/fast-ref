@@ -1,12 +1,13 @@
+<<<<<<< HEAD
 * Learning by doing - emacs and fastref
 
 ** Background
 
    It has become clear over the last year of constant emacs use for almost all my work - that this workflow is key to my long term sustainable productivity. Emacs allows for complex tasks to be completed effortlessly with planning, content production and publishing handled without any issues. Importantly customizability is key and baked in.
 
-   It has also became clear that learning the language of emacs - elisp - is going to be a super useful tool that will allow me the flexibility to continue using this tool indefinably with the agility that I need. I want to be able to bend it to any task I might come across.
+   It has also became clear that learning the language of emacs - elisp - is going to be a super useful tool that will allow me the flexibility to continue using this tool indefinably with the agility that I need. I want to be able to bend it to any task I might come To.
 
-   To this end I intend to create a few minor modes that solve problems I have and, in so doing, hopefully learn how this Goliath ticks.
+   across this end I intend to create a few minor modes that solve problems I have and, in so doing, hopefully learn how this Goliath ticks.
 
 ** fastref
 
@@ -108,4 +109,7 @@ Finally we define ~fast-ref~. This is an interactive (ie can be activated with ~
 - Allow user to choose if they want to choose the insertion method at a per citation level.
 
 You can find the repo [[https://github.com/timotaysci/fast-ref][here]] and the raw .org mode file [[https://github.com/timotaysci/fast-ref/blob/main/blogpost.org][here]]. 
+
+=======
+>>>>>>> 6e508210986b5b39e8dd5336a56fc496b42d00cd
 

@@ -25,16 +25,20 @@
 ;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 ;; SOFTWARE.
 
-(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref")
+(defvar fast-ref-cite-style "user" "Set the desired ref style for fast-ref")
 
 (defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring")
 
 (defvar fast-ref-per-ref-insert nil "Toggled per citation insert option")
 
+(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
 
 ;; For debugging
 ;;(setq fast-ref-per-ref-insert nil)
 ;;(setq fast-ref-auto-insert nil)
+;;
+
+(setq fast-ref-cite-style "user")
 
 (defun fast-ref-style-final()
   (cond
@@ -45,7 +49,6 @@
 
    )
   )
-
 
 (defun fast-ref-first-author()
   "Gets first author for fast-ref"
@@ -72,17 +75,15 @@
   (setq fast-ref-per-cite (yes-or-no-p "Insert? "))
   )
 
+
+
 (defun fast-ref()
   "Start fast-ref - requests various inputs - copies to clip board"
   (interactive)
-
-
-
   (if fast-ref-per-ref-insert
       (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages) (fast-ref-insert))
     (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages))
     )
-
   (if fast-ref-per-ref-insert
         (if fast-ref-per-cite
             (insert (fast-ref-style-final))

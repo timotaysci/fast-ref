@@ -39,6 +39,16 @@ To turn on per citation insert option, set ~fast-ref-per-ref-insert~ to t. This 
 
 Please note - titles are not included as a deliberate design decision as that would slow down the taking down of references.
 
+** User defined styles
+
+   The user can define their own styles. First, set ~fast-ref-cite-style~ to ~"user"~ . The style can be defined by setting the variable ~fast-ref-user-define~ in the user's init.el.
+
+   An example below:
+
+   ~(setq fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))~
+
+  
+
 
 
 * Todo
@@ -46,7 +56,7 @@ Please note - titles are not included as a deliberate design decision as that wo
  * +Allow for different formatting options.+
  * +Allow for different ref. styles to be chosen.+
  * +Add option to auto-insert.+
- * Allow for used defined styles. 
+ * +Allow for used defined styles.+
 
 
 

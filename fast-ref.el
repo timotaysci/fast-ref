@@ -1,4 +1,4 @@
-;;; fast-ref.el --- Quickly add references to your buffers. -*- lexical-binding: t; -*-
+;;; fast-ref.el --- Quickly add references to your buffers -*- lexical-binding: t; -*-
 
 ;; Author:  Timothy Johnson
 ;; URL: https://github.com/timotaysci/fast-refs/
@@ -6,7 +6,8 @@
 ;; Created: 2021
 
 ;; Copyright 2021 Timothy Johnson
-
+;; Package-Requires: ( (emacs "24.1") )
+;; Version: 1.0
 ;; Permission is hereby granted, free of charge, to any person
 ;; obtaining a copy of this software and associated documentation
 ;; files (the "Software"), to deal in the Software without
@@ -35,14 +36,14 @@
 
 ;;; Code:
 
-(defcustom fast-ref-cite-style "plain" "Set the desired ref style for fast-ref.")
+(defcustom fast-ref-cite-style "plain" "Set the desired ref style for `fast-ref'.")
 
 (defcustom fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring.")
 
 (defcustom fast-ref-per-ref-insert nil "Toggled per citation insert option.")
 
 (defun fast-ref-style-final()
-  "Function to format reference for fast-ref."
+  "Function to format reference for `fast-ref'."
   (cond
    ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
@@ -50,23 +51,23 @@
    ((string= fast-ref-cite-style "user") ( concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".")   )))
 
 (defun fast-ref-first-author()
-  "Gets first author for fast-ref."
+  "Gets first author for `fast-ref'."
   (setq fast-ref-first (read-string "First Author: ")))
 
 (defun fast-ref-journal()
-  "Gets journal for fast-ref."
+  "Gets journal for `fast-ref'."
   (setq fast-ref-jour (read-string "Journal: ")))
 
 (defun fast-ref-year()
-  "Gets year for fast-ref."
+  "Gets year for `fast-ref'."
   (setq fast-ref-yr (read-string "Year: ")))
 
 (defun fast-ref-volume()
-  "Gets volume for fast-ref."
+  "Gets volume for `fast-ref'."
   (setq fast-ref-vol (read-string "Volume: ")))
 
 (defun fast-ref-pages()
-  "Gets page(s) for fast-ref."
+  "Gets page(s) for `fast-ref'."
   (setq fast-ref-pg (read-string "Page(s): ")))
 
 (defun fast-ref-insert()
@@ -74,7 +75,7 @@
   (setq fast-ref-per-cite (yes-or-no-p "Insert? ")))
 
 (defun fast-ref()
-  "Start fast-ref - requests various inputs - copies to clip board."
+  "Start `fast-ref' - requests various inputs - copies to clip board."
   (interactive)
   (if fast-ref-per-ref-insert
       (progn (fast-ref-first-author) (fast-ref-journal) (fast-ref-year) (fast-ref-volume) (fast-ref-pages) (fast-ref-insert))

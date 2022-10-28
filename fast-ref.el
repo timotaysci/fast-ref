@@ -35,15 +35,11 @@
 
 ;;; Code:
 
-(defvar fast-ref-cite-style "plain" "Set the desired ref style for fast-ref.")
+(defcustom fast-ref-cite-style "plain" "Set the desired ref style for fast-ref.")
 
-(defvar fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring.")
+(defcustom fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring.")
 
-(defvar fast-ref-per-ref-insert nil "Toggled per citation insert option.")
-
-(defvar fast-ref-user-define (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".") "Default user style.")
-
-(setq fast-ref-cite-style "user")
+(defcustom fast-ref-per-ref-insert nil "Toggled per citation insert option.")
 
 (defun fast-ref-style-final()
   "Function to format reference for fast-ref."
@@ -51,7 +47,7 @@
    ((string= fast-ref-cite-style "rsc") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, " fast-ref-yr ", *" fast-ref-vol "*, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "acs") (concat fast-ref-first ", /et al./, /" fast-ref-jour "/, *" fast-ref-yr "*, /" fast-ref-vol "/, " fast-ref-pg "."))
    ((string= fast-ref-cite-style "plain") (concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg "."))
-   ((string= fast-ref-cite-style "user") (fast-ref-user-define))))
+   ((string= fast-ref-cite-style "user") ( concat fast-ref-first ", et al., " fast-ref-jour ", " fast-ref-yr ", " fast-ref-vol ", " fast-ref-pg ".")   )))
 
 (defun fast-ref-first-author()
   "Gets first author for fast-ref."
@@ -94,3 +90,4 @@
 (provide 'fast-ref)
 
 ;;; fast-ref.el ends here
+

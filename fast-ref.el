@@ -36,11 +36,26 @@
 
 ;;; Code:
 
-(defcustom fast-ref-cite-style "plain" "Set the desired ref style for `fast-ref'.")
 
-(defcustom fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring.")
 
-(defcustom fast-ref-per-ref-insert nil "Toggled per citation insert option.")
+(defvar fast-ref-first())
+(defvar fast-ref-jour())
+(defvar fast-ref-yr())
+(defvar fast-ref-vol())
+(defvar fast-ref-pg())
+(defvar fast-ref-per-cite())
+
+
+(defgroup fast-ref nil
+  "Fast-ref customisation."
+  :group 'convenience)
+
+
+(defcustom fast-ref-cite-style "plain" "Set the desired ref style for `fast-ref'." :group 'fast-ref  :type '(repeat string)) 
+
+(defcustom fast-ref-auto-insert t "Toggle auto put into point. nil will add to kill ring."  :group 'fast-ref  :type '(repeat string))
+
+(defcustom fast-ref-per-ref-insert nil "Toggled per citation insert option."   :group 'fast-ref :type '(repeat string)) 
 
 (defun fast-ref-style-final()
   "Function to format reference for `fast-ref'."
@@ -91,4 +106,3 @@
 (provide 'fast-ref)
 
 ;;; fast-ref.el ends here
-
